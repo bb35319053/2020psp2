@@ -12,6 +12,7 @@ int main(void)
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
+
     printf("input the filename of sample:");
     fgets(fname,sizeof(fname),stdin);
     fname[strlen(fname)-1] = '\0';
@@ -28,6 +29,7 @@ int main(void)
     
     ave = ave_online(val,ave);
     printf("average = %.2f",ave);
+
     printf("value = %.2f",val);
 
     }
@@ -45,13 +47,17 @@ int main(void)
 
 double ave_online(double val,double ave)
 {
-    int n;
+    double ss;
+    ave = 0;
 
-    for(i = 0, i <= val, i++)
+    for(i = 1, i <= val, i++)
     {
-        ave = (i - 1)*ave/i + val/i;
-        
+        ss = (i - 1)*pow(ave,2)/i + val[i]/i - (i - 1)*ave/i + val[i]/i;
+        ave = (i - 1)*ave/i + val[i]/i;
     }
-    return ave;
+
+    printf("average = %f", ave);
+    printf("value = %f", ss);
 }
+
 
