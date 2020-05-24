@@ -3,12 +3,12 @@
 #include <string.h>
 #include <math.h>
 
-extern double ave_online(double val,double ave)
-extern double var_online()
+extern double ave_online(double val, double ave)
+extern double var_online(double val, double ave)
 
 int main(void)
 {
-    double val;
+    double val, ss;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -27,10 +27,11 @@ int main(void)
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
     
-    ave = ave_online(val,ave);
-    printf("average = %.2f",ave);
+    ave = ave_online(double val,double ave);
+    ss = var_online(double val,double ave);
 
-    printf("value = %.2f",val);
+    printf("average = %.2f",ave);
+    printf("value = %.2f",ss);
 
     }
 
@@ -47,17 +48,21 @@ int main(void)
 
 double ave_online(double val,double ave)
 {
-    double ss;
     ave = 0;
 
     for(i = 1, i <= val, i++)
     {
-        ss = (i - 1)*pow(ave,2)/i + val[i]/i - (i - 1)*ave/i + val[i]/i;
         ave = (i - 1)*ave/i + val[i]/i;
     }
 
-    printf("average = %f", ave);
-    printf("value = %f", ss);
+    return ave;
 }
 
+double var_online(double val, double ave)
+{
+    double ss;
+
+
+    return ss;
+}
 
