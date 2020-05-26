@@ -36,8 +36,8 @@ int main(void)
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
 
-    L1 = L1*p_stdnorm(val, mu_A, var_A);
-    L2 = L2*p_stdnorm(val, mu_B, var_B);
+        L1 = L1*p_stdnorm(val, mu_A, var_A);
+        L2 = L2*p_stdnorm(val, mu_B, var_B);
 
 
 
