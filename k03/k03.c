@@ -39,7 +39,8 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
-
+    printf("test");
+    
     return 0;
 
 
