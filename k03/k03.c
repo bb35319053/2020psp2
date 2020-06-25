@@ -37,7 +37,11 @@ int main(int argc, char* argv[])
         printf("%5.2lf\n",dummy);
     }
 
-    return EXIT_SUCCESS;
+    printf("test");
+    
+    return 0;
+
+
 }
 
 double r_unif(void)
