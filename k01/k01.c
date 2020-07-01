@@ -30,7 +30,7 @@ int main(void)
         sscanf(buf,"%lf",&val);
     
         average = ave_online(val, ave);
-        ss = var_online( val, average);
+        ss = var_online(val, average);
 
         printf("average = %.2f",average);
         printf("value = %.2f",ss);
@@ -52,7 +52,7 @@ double ave_online(double val,double ave)
 {
     int i = 1;
 
-    for(i = 1, i <= val, i++);
+    for(i = 1, i <= val, i++)
     {
         ave = (i - 1)*ave/i + val[i]/i;
     }
