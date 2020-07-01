@@ -3,8 +3,8 @@
 #include <string.h>
 #include <math.h>
 
-extern double ave_online(double val, double ave);
-extern double var_online(double val, double average);
+extern double ave_online(double val, double ave, int n);
+extern double var_online(double val, double average, int n);
 
 int main(void)
 {
@@ -12,8 +12,9 @@ int main(void)
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
-    double average,ave;
+    double ave;
     ave = 0;
+    int n = 1;
 
     printf("input the filename of sample:");
     fgets(fname,sizeof(fname),stdin);
@@ -29,14 +30,12 @@ int main(void)
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
     
-        average = ave_online(val, ave);
-        ss = var_online(val, average);
-
-        printf("average = %.2f",average);
-        printf("value = %.2f",ss);
-
+        ave = ave_online(val, ave, n);
+        ss = var_online(val, ave, n);
+        n++;
     }
-
+    printf("average = %.2f",ave);
+    printf("value = %.2f",ss);
     if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
@@ -48,28 +47,18 @@ int main(void)
 
 }
 
-double ave_online(double val,double ave)
+double ave_online(double val,double ave,int n)
 {
-    int i = 1;
-
-    for(i = 1, i <= val, i++)
-    {
-        ave = (i - 1)*ave/i + val[i]/i;
-    }
+    
+    ave = (n - 1)*ave/n + val/n;
 
     return ave;
 }
 
-double var_online(double val, double average)
+double var_online(double val, double ave, int n)
 {
-    double ss;
-    int i;
-    for(i = 1, i <= val, i++)
-    {
-        ss = ss + val[i];
-    }
-
-    ss = pow(ss - average,2);
+   int ss;
+   ss = (n -1)*pow(ave,2)/n + val*val/n - pow((n - 1)*ave/n + val/n,2);
 
     return ss;
 }
