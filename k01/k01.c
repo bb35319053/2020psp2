@@ -34,8 +34,10 @@ int main(void)
         ss = var_online(val, ave, n);
         n++;
     }
-    printf("average = %.2f",ave);
-    printf("value = %.2f",ss);
+
+    printf("average = %.2f\n",ave);
+    printf("Dispersion = %.2f",ss);
+
     if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
@@ -58,7 +60,7 @@ double ave_online(double val,double ave,int n)
 double var_online(double val, double ave, int n)
 {
    int ss;
-   ss = (n -1)*pow(ave,2)/n + val*val/n - pow((n - 1)*ave/n + val/n,2);
+   ss = (n -1)*pow(ave,2)/n + val*val/n - ave*ave;
 
     return ss;
 }
