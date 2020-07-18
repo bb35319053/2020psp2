@@ -35,7 +35,7 @@ int main(void)
         n++;
     }
 
-    printf("average = %.2f\n",ave);
+    printf("average = %.2f \n",ave);
     printf("Dispersion = %.2f",ss);
 
     if(fclose(fp) == EOF){
@@ -59,9 +59,10 @@ double ave_online(double val,double ave,int n)
 
 double var_online(double val, double ave, int n)
 {
-   int sss;
-   sss = (n -1)*pow(ave,2)/n + val*val/n - ave*ave;
+    double ss;
+  // ss = (n -1)*pow(ave,2)/n + val*val/n - ave*ave;
+  ss = 
 
-    return sss;
+    return ss;
 }
 
