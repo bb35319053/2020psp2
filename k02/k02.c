@@ -39,6 +39,7 @@ int main(void)
         L1 = L1*p_stdnorm(val, mu_A, var_A);
         L2 = L2*p_stdnorm(val, mu_B, var_B);
 
+        
 
 
     }
