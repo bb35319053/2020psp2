@@ -13,7 +13,7 @@ int main(void)
     char buf[256];
     FILE* fp;
     double L1=1,L2=1;
-    double mu, var;
+    //double mu, var;
     double mu_A, mu_B;
     double var_A, var_B;
 

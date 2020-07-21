@@ -36,7 +36,7 @@ int main(void)
     }
 
     printf("average = %.2f \n",ave);
-    printf("Dispersion = %.2f",ss);
+    printf("Dispersion = %.2f\n",ss);
 
     if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
