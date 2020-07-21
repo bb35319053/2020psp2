@@ -4,11 +4,11 @@
 #include <math.h>
 
 extern double ave_online(double val, double ave, int n);
-extern double var_online(double val, double average, int n);
+extern double var_online(double val, double average, int n, double A);
 
 int main(void)
 {
-    double val, ss;
+    double val, ss, A;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -31,7 +31,8 @@ int main(void)
         sscanf(buf,"%lf",&val);
     
         ave = ave_online(val, ave, n);
-        ss = var_online(val, ave, n);
+         A = (n - 1)*A/n + pow(val,2)/n;
+        ss = var_online(val, ave, n, A);
         n++;
     }
 
@@ -57,10 +58,10 @@ double ave_online(double val,double ave,int n)
     return ave;
 }
 
-double var_online(double val, double ave, int n)
+double var_online(double val, double ave, int n, double A)
 {
-    double ss,A;
-    A = (n - 1)*A/n + pow(val,2)/n;
+    double ss;
+   // A = (n - 1)*A/n + pow(val,2)/n;
    ss = A - pow(ave,2);
 
 
