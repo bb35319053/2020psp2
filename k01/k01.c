@@ -60,8 +60,8 @@ double ave_online(double val,double ave,int n)
 double var_online(double val, double ave, int n)
 {
     double ss,A;
-    A = (n - 1)*A/n;
-   ss = A + pow(val,2)/n - pow(ave,2);
+    A = (n - 1)*A/n + pow(val,2)/n;
+   ss = A - pow(ave,2);
 
 
     return ss;
