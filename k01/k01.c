@@ -8,7 +8,7 @@ extern double var_online(double val, double average, int n, double A);
 
 int main(void)
 {
-    double val, ss, A;
+    double val, ss, A, u, se;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -36,8 +36,13 @@ int main(void)
         n++;
     }
 
-    printf("average = %.2f \n",ave);
-    printf("Dispersion = %.2f\n",ss);
+    u = n*ss/(n-1);
+    se = sqrt(u/n);
+
+    printf("sample mean : %.2f \n",ave);
+    printf("sample variance : %.2f\n",ss);
+    printf("population mean(estimated) : %.2f ± %.2f\n",ave, se);
+    printf("population variance(estimated) : %.2f\n",ss);
 
     if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
