@@ -56,9 +56,13 @@ int main(void)
 
 
 }
-
+#if 0
 double p_stdnorm(double x, double mu, double var)
 {
     return exp(-pow(x - mu,2)/2*var)/sqrt(2*M_PI*var);
+}
+#endif
+double p_stdnorm(double x,double mu, double var){
+    return exp(-x*x/2)/sqrt(2*M_PI);
 }
 
