@@ -37,7 +37,7 @@ int main(void)
     }
 
     u = (n + 1)*ss/n;
-    se = sqrt(u/n);
+    se = sqrt(u/(n + 1));
 
     printf("sample mean : %.2f \n",ave);
     printf("sample variance : %.2f\n",ss);
