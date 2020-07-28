@@ -57,8 +57,8 @@ int main(void)
 
 }
 
-double p_stdnorm(double z, double mu, double var)
+double p_stdnorm(double x, double mu, double var)
 {
-    return 1/sqrt(2*M_PI*var) * exp(-pow(z - mu,2)/(2*var));
+    return exp(-pow(x - mu,2)/2*var)/sqrt(2*M_PI*var);
 }
 
