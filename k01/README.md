@@ -57,5 +57,5 @@ population variance (estimated)：
 ```
 
 ## 修正履歴
-
-説明は「かきくけこ」だ！
+[comment #20200721]
+- 63行目のpow(ave,2)を別の形に変更しましょう。square_ave=ave_online(pow(val,2),square_ave)というものを作り、そのsquare_aveを63行目のpow(ave,2)と入れ替えてみてはいかがでしょうか。尚、square_aveは新規で宣言する必要があります。
