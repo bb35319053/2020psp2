@@ -36,7 +36,7 @@ int main(void)
         n++;
     }
 
-    u = n*ss/(n-1);
+    u = (n + 1)*ss/n;
     se = sqrt(u/n);
 
     printf("sample mean : %.2f \n",ave);
