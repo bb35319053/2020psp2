@@ -8,10 +8,10 @@ int main(void)
     double val;
     char fname[FILENAME_MAX];
     char fname2[FILENAME_MAX];
-    char buf[256],gender[6];
-    FILE* fp,fp2;
+    char buf[256],gender[6],ID[14];
+    FILE* fp;
+    FILE* fp2;
     double data[14];
-    int ID[14];
     
     i = 1;
     j = 1;
