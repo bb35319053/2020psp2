@@ -20,10 +20,7 @@ int main(void)
     fgets(fname,sizeof(fname),stdin);
     fname[strlen(fname)-1] = '\0';
 
-    printf("input the filename of sample ID :");
-    fgets(fname2,sizeof(fname2),stdin);
-    fname[strlen(fname2)-1] = '\0';
-
+   
     fp = fopen(fname,"r");
     if(fp==NULL){
         fputs("File open error\n",stderr);
@@ -38,6 +35,15 @@ int main(void)
         i++;
 
     }
+     if(fclose(fp) == EOF){
+        fputs("file close error\n",stderr);
+        exit(EXIT_FAILURE);
+    }
+
+
+    printf("input the filename of sample ID :");
+    fgets(fname2,sizeof(fname2),stdin);
+    fname[strlen(fname2)-1] = '\0';
 
     fp2 = fopen(fname2,"r");
     if (fp==NULL){
@@ -46,28 +52,22 @@ int main(void)
     }
 
     while(fgets(ID,sizeof(ID),fp2) !=NULL){
-        sscanf(ID,"%d",&number[j]);
+        sscanf(ID,"%c./",&number[j]);
         j++;
     }
-
-    
-
-    if(fclose(fp) == EOF){
-        fputs("file close error\n",stderr);
-        exit(EXIT_FAILURE);
-    }
-
+  
     if(fclose(fp2) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
     }
+    
 
     printf("which ID's data do you want? :\n");
-    scanf("%d",&ID);
+    scanf("%c",&ID);
 
     for(n=1;n<=14;n++){
         if(ID == number[n]){
-            printf("---/nID : %d/ngender :%c/nheight :%lf/n",ID, gender[n], data[n]);
+            printf("---/nID : %c/ngender :%c/nheight :%lf/n",ID, gender[n], data[n]);
         }
     }
 
