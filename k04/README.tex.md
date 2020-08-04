@@ -41,3 +41,23 @@ No data
 [comment #20200721]
 - fpの宣言を分けてみましょう。
 - 49行目のIDはint型なのでエラーが出るかと思われます。読み込みのときは基本的にchar型でないといけないので新しくchar型の配列を作成してください。
+
+[comment #20200804 sonoda]
+- 構造体を使ってください．
+- main関数の前に，
+  ```
+  typedef struct data_t{
+    int ID;
+    int gender;
+    double height;
+  } DATA;
+  ```
+  などとして，構造体を宣言し，main関数の中では，
+  ```
+  DATA data[14];
+  ```
+  などとして，構造体の配列を作ります．
+  ```
+  sscanf(buf,"%d, %lf", &data[i].gender, &data[i].height);
+  ```
+  などとすれば，bufにコピーされたファイルの1行分の文字列から，配列の`i`番目の構造体要素のgenderとheightに値が読み取られます．
