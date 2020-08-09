@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct D{double ID; int gender; double height;};
+
 int main(void)
 {
-    int i,j,n,number[14];
-    double val;
+    int i,j,a,gender;
+    double val,id,ID;
     char fname[FILENAME_MAX];
     char fname2[FILENAME_MAX];
-    char buf[256],gender[6],ID[14];
-    FILE* fp;
-    FILE* fp2;
-    double data[14];
+    char buf[256],buf2[256];
+    FILE* fp, * fp2;
+    struct D data[14];
     
     i = 1;
     j = 1;
@@ -28,10 +29,10 @@ int main(void)
     }
 
     while(fgets(buf,sizeof(buf),fp) != NULL){
-        sscanf(buf,"%lf",&val);
-        sscanf(buf,"%s",&gender[i]);
+        sscanf(buf,"%d,%lf",&gender,&val);
 
-        data[i] = val;
+        data[i].gender = gender;
+        data[i].height = val;
         i++;
 
     }
@@ -46,14 +47,15 @@ int main(void)
     fname[strlen(fname2)-1] = '\0';
 
     fp2 = fopen(fname2,"r");
-    if (fp==NULL){
+    if (fp2==NULL){
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
 
-    while(fgets(ID,sizeof(ID),fp2) !=NULL){
-        sscanf(ID,"%c./",&number[j]);
+    while(fgets(buf2,sizeof(buf2),fp2) !=NULL){
+        sscanf(buf2,"%lf/",&ID);
         j++;
+        data[i].ID = ID;
     }
   
     if(fclose(fp2) == EOF){
@@ -63,14 +65,26 @@ int main(void)
     
 
     printf("which ID's data do you want? :\n");
-    scanf("%c",&ID);
-
-    for(n=1;n<=14;n++){
-        if(ID == number[n]){
-            printf("---/nID : %c/ngender :%c/nheight :%lf/n",ID, gender[n], data[n]);
+    scanf("%lf",&id);
+    a=1;
+    for(i=1;i<=14;i++){
+        if(data[i].ID == id){
+            printf("ID : %.0lf\n",data[i].ID);
+            printf("gender :");
+            if(data[i].gender == 1){
+                printf("male\n");
+            }
+            else{
+                printf("fmale\n");
+                }
+            printf("height : %.1lf\n",data[i].height);
+            a=0;
         }
-    }
 
+    }
+    if(a == 1){
+        printf("No data");
+    }
     return 0;
 
 
