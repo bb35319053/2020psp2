@@ -24,21 +24,32 @@ int main(int argc, char* argv[])
 
 
 
+    if(argc==4){
 
-    printf("============================================\n");
-    printf("template mean: %4.1lf\n",mu);
-    printf("template standard deviation: %3.2lf\n",sigma);
-    printf("Num of dummy data: %d\n",num_dummy);
-    printf("============================================\n");
+        printf("============================================\n");
+        sscanf(argv[1],"%lf",&mu);
+        printf("template mean:%4.1lf\n",mu);
+        sscanf(argv[2],"%lf",&sigma);
+        printf("template standard deviation: %3.2lf\n",sigma);
+        sscanf(argv[3],"%d",&num_dummy);
+        printf("Num of dummy data: %d\n",num_dummy);
+        printf("============================================\n");
 
-    srand(RAND_SEED);
-    for(n = 0; n <= num_dummy; n++ ){
+
+
+        srand(RAND_SEED);
+        for(n = 1; n <= num_dummy; n++ ){
         /* r_stdnormを使って，1人のデータを捏造 */
-        dummy = r_stdnorm()*sigma + mu;
-        printf("%5.2lf\n",dummy);
+            dummy = r_stdnorm()*sigma + mu;
+            printf("%5.2lf\n",dummy);
+        }
+    }
+    else{
+        printf("input error\n");
+        exit(EXIT_FAILURE);
     }
 
-    return EXIT_SUCCESS;
+    return 0;
 }
 
 double r_unif(void)
