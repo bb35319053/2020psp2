@@ -6,7 +6,7 @@ struct D{double ID; int gender; double height;};
 
 int main(void)
 {
-    int i,j,a,gender;
+    int i,a,gender;
     double val,id,ID;
     char fname[FILENAME_MAX];
     char fname2[FILENAME_MAX];
@@ -15,7 +15,6 @@ int main(void)
     struct D data[14];
     
     i = 1;
-    j = 1;
 
     printf("input the filename of sample height :");
     fgets(fname,sizeof(fname),stdin);
@@ -36,15 +35,17 @@ int main(void)
         i++;
 
     }
+    #if 0
      if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
     }
-
+    #endif
+    i = 1;
 
     printf("input the filename of sample ID :");
     fgets(fname2,sizeof(fname2),stdin);
-    fname[strlen(fname2)-1] = '\0';
+    fname2[strlen(fname2)-1] = '\0';
 
     fp2 = fopen(fname2,"r");
     if (fp2==NULL){
@@ -54,17 +55,19 @@ int main(void)
 
     while(fgets(buf2,sizeof(buf2),fp2) !=NULL){
         sscanf(buf2,"%lf/",&ID);
-        j++;
+        i++;
         data[i].ID = ID;
     }
-  
+
+
+    #if 0
     if(fclose(fp2) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
     }
-    
+    #endif
 
-    printf("which ID's data do you want? :\n");
+    printf("which ID's data do you want? :");
     scanf("%lf",&id);
     a=1;
     for(i=1;i<=14;i++){
