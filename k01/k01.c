@@ -4,7 +4,7 @@
 #include <math.h>
 
 extern double ave_online(double val, double ave, int n);
-extern double var_online(double val, double average, int n, double A);
+extern double var_online(double average,double A);
 
 int main(void)
 {
@@ -31,12 +31,12 @@ int main(void)
         sscanf(buf,"%lf",&val);
     
         ave = ave_online(val, ave, n);
-         A = (n - 1)*A/n + pow(val,2)/n;
-        ss = var_online(val, ave, n, A);
+        A = (n - 1)*A/n + pow(val,2)/n;
+       // ss = var_online(ave,A);
         n++;
     }
-
-    u = n*ss/(n - 1);
+    ss = var_online(ave,A);
+    u = n*ss/(n-1);
     se = sqrt(u/n);
 
     printf("sample mean : %.2f \n",ave);
@@ -63,7 +63,7 @@ double ave_online(double val,double ave,int n)
     return ave;
 }
 
-double var_online(double val, double ave, int n, double A)
+double var_online(double ave,double A)
 {
     double ss;
    // A = (n - 1)*A/n + pow(val,2)/n;
