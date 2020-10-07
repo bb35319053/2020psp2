@@ -59,3 +59,8 @@ population variance (estimated)：
 ## 修正履歴
 [comment #20200721]
 - 63行目のpow(ave,2)を別の形に変更しましょう。square_ave=ave_online(pow(val,2),square_ave)というものを作り、そのsquare_aveを63行目のpow(ave,2)と入れ替えてみてはいかがでしょうか。尚、square_aveは新規で宣言する必要があります。
+
+[comment #20200804 sonoda]
+- population variance は u (不偏分散)　ではないでしょうか．uとすると，答えは合っています．
+- いずれにせよ，1文字の変数名は可能であればやめましょう．Aは2乗値の平均だと思いますが，相応の変数名がいいと思います．
+- 実際の実行結果を上の「入出力結果」にコピペしてください．また，ソースコードの説明も書いてください．
